@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Custom animations */
+  --animate-in: slide-in-from-top-2;
+  --animate-out: slide-out-to-top-2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  /* Smooth scroll behavior */
+  html {
+    @apply scroll-smooth;
+  }
+
+  /* Remove default shadows and add custom ones for better consistency */
+  .shadow-soft {
+    @apply shadow-sm;
+  }
+
+  .shadow-lg-soft {
+    @apply shadow-lg;
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    @apply backdrop-blur-md bg-white/80 dark:bg-gray-900/80;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  }
+
+  /* Custom animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes bounce-smooth {
+    0%,
+    100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: none;
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .animate-slide-in-down {
+    animation: slideInDown 0.5s ease-out;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0)
+    );
+    background-position: -1000px 0;
+    background-size: 1000px 100%;
+  }
+
+  .animate-bounce-smooth {
+    animation: bounce-smooth 1s infinite;
+  }
+
+  /* Status indicator animation */
+  .status-indicator {
+    @apply w-2 h-2 rounded-full animate-pulse;
+  }
+
+  .status-indicator.up {
+    @apply bg-emerald-500;
+  }
+
+  .status-indicator.down {
+    @apply bg-red-500;
+  }
+
+  .status-indicator.unknown {
+    @apply bg-gray-500;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .hover-tint {
+    @apply transition-colors duration-200 hover:brightness-110;
+  }
+}
+
+/* Sonner Toast customization */
+:root {
+  --sonner-background: #ffffff;
+  --sonner-border: #e5e7eb;
+  --sonner-text: #171717;
+  --sonner-close-button-background: #f3f4f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sonner-background: #1f2937;
+    --sonner-border: #374151;
+    --sonner-text: #f3f4f6;
+    --sonner-close-button-background: #374151;
+  }
+}
