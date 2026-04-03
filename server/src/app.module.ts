@@ -20,7 +20,7 @@ import { MonitorModule } from './monitor/monitor.module';
             type: 'postgres',
             url: configService.get<string>('DATABASE_URL'),
             autoLoadEntities: true,
-            synchronize: false,
+            synchronize: true,
             ssl: false,
           };
         }
